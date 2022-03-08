@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+
+    <script type="text/javascript" src="{{url_for ('static',filename ='script/script.js')}}"></script>
+
+    <title>Census Data</title>
+</head>
+
+<body>
+    <!-- Nav As a heading -->
+    <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-brand mb-0 h1">Person Income Per Year</span>
+    </nav>
+    <br> <br>
+    <h6 class="mx-3">Please Fill The Following Details In Order to Predict Whether a Person Makes Over50K Per Year</h6>
+    <div class="container">
+        <form action="\predict" method="post" class="my-3">
+            <div class="form-row">
+              <div class="col">
+                <div class="card my-3 mx-3" id="card" style="width: 21rem;">
+                  <div class ="card-body">
+                    <h5 class="card-title">Age</h5>
+                    <input type="text" name="age" class="form-control" placeholder="Enter Integer Value"
+                    required ="required">
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card my-3 mx-3" id="card1" style="width: 21rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Final Weight</h5>
+                    <input type="text" name="final_weight" class="form-control" placeholder="Enter Integer Value"
+                    required="required">
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card my-3 mx-3" id="card2" style="width: 21rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Education Number</h5>
+                    <input type="text" name="education_num" class="form-control" placeholder="Enter Integer Value"
+                    required="required">
+                  </div>
+                </div>
+              </div>  
+              <div class="col">
+                <div class="card mx-3" id="card3" style="width: 21rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Hours Per Week</h5>
+                    <input type="text" name="hours_per_week" class="form-control" placeholder="Enter Integer Value"
+                    required="required">
+                  </div>
+                </div>
+              </div>
+              <div class ="col">
+                <div class ="card my-3 mx-3" id="card4" style="width:21rem">
+                  <div class ="card-body">
+                    <h5 class ="card-title">Capital Gain</h5>
+                    <input type="text" name="capital_gain" class ="form-control" placeholder="Enter Integer Value"
+                    required="required">
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card my-3 mx-3" id="card9" style="width: 21rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Relationship</h5>
+                    <select name="relationship" id="relationship">
+                      <option value="None">Relationship</option>
+                      <option value="1">Husband</option>
+                      <option value="2">Not-in-family</option>
+                      <option value="3">Own-child</option>
+                      <option value="4">Unmarried</option>
+                      <option value="5">Wife</option>
+                      <option value="6">Other-relative</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <div class="form-row">
+              <div class="col">
+                <div class="card my-3 mx-3" id="card5" style="width: 21rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Education</h5>
+                    <select name="education" id="education" >
+                      <option value="None">Education</option>
+                      <option value="1">HS-grad</option>
+                      <option value="2">Some-college</option>
+                      <option value="3">Bachelors</option>
+                      <option value="4">Masters</option>
+                      <option value="5">Assoc-voc</option>
+                      <option value="6">11th</option>
+                      <option value="7">Assoc-acdm</option>
+                      <option value="8">10th</option>
+                      <option value="9">7th-8th</option>
+                      <option value="10">Prof-school</option>
+                      <option value="11">9th</option>
+                      <option value="12">12th</option>
+                      <option value="13">Doctorate</option>
+                      <option value="14">5th-6th</option>
+                      <option value="15">1st-4th</option>
+                      <option value="16">Preschool</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card my-3 mx-3" id="card6" style="width: 21rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Work Class</h5>
+                    <select name="work_class" id="work_class">
+                      <option value="None">Work Class</option>
+                      <option value="1">Private</option>
+                      <option value="2">Self Employ Not Inc</option>
+                      <option value="3">Local Government</option>
+                      <option value="4">State Government</option>
+                      <option value="5">Self Employ Inc</option>
+                      <option value="6">Fedaral Government</option>
+                      <option value="7">Without Pay</option>
+                      <option value="8">Never Worked</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card my-3 mx-3" id="card7" style="width: 21rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Marital Status</h5>
+                    <select name="marital_status" id="marital_status" >
+                      <option value="None">Marital Status</option>
+                      <option value="1">Married-civ-spouse</option>
+                      <option value="2">Never-married</option>
+                      <option value="3">Divorced</option>
+                      <option value="4">Separated</option>
+                      <option value="5">Widowed</option>
+                      <option value="6">Married-spouse-absent</option>
+                      <option value="7">Married-AF-spouse</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="card my-3 mx-3" id="card8" style="width: 21rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Occupation</h5>
+                    <select name="occupation" id="occupation">
+                      <option value="None">Occupation</option>
+                      <option value="1">Prof-specialty</option>
+                      <option value="2">Craft-repair</option>
+                      <option value="3">Exec-managerial</option>
+                      <option value="4">Adm-clerical</option>
+                      <option value="5">Sales</option>
+                      <option value="6">Other-service</option>
+                      <option value="7">Machine-op-inspct</option>
+                      <option value="8">Transport-moving</option>
+                      <option value="9">Handlers-cleaners</option>
+                      <option value="10">Farming-fishing</option>
+                      <option value="11">Tech-support</option>
+                      <option value="12">Protective-serv</option>
+                      <option value="13">Priv-house-serv</option>
+                      <option value="14">Armed-Forces</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Submit -->
+            <div class="col my-3">
+              <input type="submit" id="button" value="Submit" class="btn btn-primary">
+            </div>
+        </form>
+        <br>
+
+        <div class="container">
+          <h3>{{ prediction_text }}</h3>
+        </div>
+        <br>
+       <!-- <p class="copyright text-muted" style="text-align: center;">copyright@: Mayur Borkar</p>-->
+    </div>
+
+    <footer>
+      <a href="https://www.linkedin.com/in/mayurborkar/" target="_blank"><i class="fa fa-linkedin" ></i></a>
+      <br>
+      <small class="copyright text-muted">copyright@: Mayur Borkar</small>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
